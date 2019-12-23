@@ -41,11 +41,11 @@ class SignUpView(CreateView):
             return redirect(reverse('home'))
 
 
-class ProfileView(TemplateView, LoginRequiredMixin):
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/profile.html'
 
 
-class EditProfileView(UpdateView, LoginRequiredMixin):
+class EditProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/edit.html'
     form_class = EditProfileForm
 

@@ -16,6 +16,9 @@ $(document).ready(function () {
             let file = this.files[0];
             let form = new FormData();
             let uploadAvatarUrl = $(this).data('url');
+            // set label
+            let fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             form.append('file', file);
 
             $.ajax({

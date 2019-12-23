@@ -7,7 +7,11 @@
     <div class="col-3">
       <div class="aspect-ratio-box mt-3 mb-3">
         <div class="aspect-ratio-box-inside">
-          <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}'s avatar" class="g-img img-thumbnail">
+          {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}'s avatar" class="g-img img-thumbnail">
+          {% else %}
+            <img src="/media/images/blank.png" alt="A blank image" class="g-img img-thumbnail">
+          {% endif %}
         </div>
       </div>
       <h2>{{ user.get_full_name }}</h2>
@@ -20,9 +24,9 @@
       <p>{{ user.hobbies }}</p>
     </div>
     <div class="col-7 offset-1">
-      <p>{{ user.bio|safe }}        {% lorem 3 p %}
+      <h2 class="text-center">Bio</h2>
+      <p>{{ user.bio|safe }}</p>
 
-</p>
     </div>
   </div>
 {% endblock %}

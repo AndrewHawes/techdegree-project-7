@@ -26,6 +26,8 @@ SECRET_KEY = '5h0v$rgn_siee0!_snd$0cc2&f7pwjri1020*g!4-wf&9_-sv3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+USE_DEBUG_TOOLBAR = False
+LOG_TO_FILE = False
 
 ALLOWED_HOSTS = []
 
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'bootstrap_datepicker_plus',
-    # 'zxcvbn_password',
 ]
 
 MIDDLEWARE = [
@@ -163,7 +164,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-if DEBUG:
+if DEBUG and USE_DEBUG_TOOLBAR:
     INSTALLED_APPS += ['debug_toolbar']
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
     INTERNAL_IPS = ['127.0.0.1']
@@ -182,44 +183,41 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     }
 }
-# CKEDITOR_CONFIGS = {
-#     'awesome_ckeditor': {
-#         'toolbar': 'Basic',
-#     },
-# }
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'datefmt': '%m/%d %H:%M:%S',
-            'style': '{',
+if LOG_TO_FILE:
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+                'datefmt': '%m/%d %H:%M:%S',
+                'style': '{',
+            },
+            'simple': {
+                'format': '{levelname} {message}',
+                'style': '{',
+            },
+            'timestamp': {
+                'format': '{levelname} {asctime} {message}',
+                'datefmt': '%m/%d %H:%M:%S',
+                'style': '{',
+            }
         },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
+        'handlers': {
+            'file': {
+                # 'level': 'INFO',
+                'class': 'logging.FileHandler',
+                'filename': '/techdegree/techdegree-project-7/logs/server.log',
+                'formatter': 'timestamp',
+            },
         },
-        'timestamp': {
-            'format': '{levelname} {asctime} {message}',
-            'datefmt': '%m/%d %H:%M:%S',
-            'style': '{',
-        }
-    },
-    'handlers': {
-        'file': {
-            # 'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': '/techdegree/techdegree-project-7/logs/server.log',
-            'formatter': 'timestamp',
+        'loggers': {
+            'django.server': {
+                'handlers': ['file'],
+                # 'level': 'INFO',
+                'propagate': False,
+            },
         },
-    },
-    'loggers': {
-        'django.server': {
-            'handlers': ['file'],
-            # 'level': 'INFO',
-            'propagate': False,
-        },
-    },
-}
+    }

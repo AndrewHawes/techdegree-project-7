@@ -57,7 +57,6 @@ such as city/state/country of residence, favorite animal, hobby, etc.
 - [x] Code complies with most common PEP 8 standards of style
 
 # Extras
-- [x] Set up logging
 - [x] Change ck editor to not take up so much width.
-- [ ] Remove extraneous static files
-- [ ] Rewrite views with class based views
+- [x] Remove extraneous static files
+- [x] Rewrite views with class based views

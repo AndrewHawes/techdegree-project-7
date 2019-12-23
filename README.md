@@ -21,8 +21,8 @@ password that meets the somewhat stringent password requirements for this site.
 ## Installation
 *Two users are automatically provided when you initialize the database:*
 - Normal Account
-    - username: zorbert
-    - password: pass
+    - username: bob
+    - password: Bartsimpson1234!
 - Superuser Account
     - username: admin
     - password: pass  
@@ -37,7 +37,8 @@ password that meets the somewhat stringent password requirements for this site.
 4. `pip install -r requirements.txt` to install the project dependencies.
    - Required JavaScript files are included with the download.
 5. `python manage.py migrate` to initialize the database.
+6. `python manage.py loaddata db.json` to load data.
 6. `python manage.py runserver` to start the server on port 8000 (default).
 7. Open [127.0.0.1:8000](127.0.0.1:8000) in your browser.
 
-From here, you can create your own account and edit your profile.
+From here, you can use one of the existing accounts or create your own account and edit your profile.

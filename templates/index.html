@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Welcome!</h1>
+  <h1>{% if user.is_authenticated %}
+      Welcome, {{ user.first_name }}!
+    {% else %}
+      Welcome!
+    {% endif %}</h1>
   <p>{% lorem 2 p %}</p>
 {% endblock %}
