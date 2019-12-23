@@ -1,0 +1,11 @@
+<div class="custom-file my-3">
+  {% include 'django/forms/widgets/input.html' %}
+  <label for="{{ widget.attrs.id }}" data-test="hi" class="custom-file-label">{{ widget.custom_label }}</label>
+
+</div>
+<script type="text/javascript">
+  $("#{{ widget.attrs.id }}").on("change", function() {
+    let fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+</script>

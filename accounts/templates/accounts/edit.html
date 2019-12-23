@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Edit Profile
+{% endblock %}
+{% block css %}
+  <link href="{% static 'imageutils/css/cropper.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+  <div class="row border-bottom no-gutters pb-1 mb-3">
+    <div class="col">
+      <h1 class="mb-0">Edit Profile</h1>
+    </div>
+    <div class="col">
+      <a href="{% url 'change_password' %}" class="btn btn-outline-primary font-weight-bold float-right">Change Password</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="aspect-ratio-box mt-3 mb-3">
+        <div class="aspect-ratio-box-inside">
+          <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}'s avatar" data-preview-for="id_avatar" data-url="{% url 'imageutils:save_image' %}" class="w-100 js-img-edit" id="user-avatar">
+          <button data-editor-for="user-avatar" class="btn btn-outline-primary btn-sm g-img-edit-btn js-img-edit" id="open-editor-btn"><i class="fas fa-edit"></i></button>
+        </div>
+      </div>
+      <div class="custom-file">
+        <input type="file" name="avatar" accept="image/*" data-url="{% url 'imageutils:upload_avatar' %}" class="custom-file-input" id="id_avatar">
+        <label for="id_avatar" class="custom-file-label">Change Image</label>
+      </div>
+    </div>
+    <div class="col-8 offset-1">
+      <form method="post" action="{% url 'edit' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.email|as_crispy_field }}
+        {% if form.email.errors or form.email2.errors %}
+          {{ form.email2|as_crispy_field }}
+        {% else %}
+          <div class="d-none" id="email2_wrapper">
+            {{ form.email2|as_crispy_field }}
+          </div>
+        {% endif %}
+        {{ form.first_name|as_crispy_field }}
+        {{ form.last_name|as_crispy_field }}
+        {{ form.dob|as_crispy_field }}
+        {{ form.bio|as_crispy_field }}
+        {{ form.favorite_animal|as_crispy_field }}
+        {{ form.hobbies|as_crispy_field }}
+        <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+
+      </form>
+    </div>
+  </div>
+  {% include 'imageutils/modals/modal_image_editor.html' %}
+
+{% endblock %}
+{% block javascript %}
+  <script type="text/javascript">
+    if ($("#id_bio").hasClass('is-invalid')) { $("#id_bio").parent().addClass('is-invalid'); }
+    if ($("#id_dob").hasClass('is-invalid')) { $("#id_dob").parent().addClass('is-invalid'); }
+    $(function() {
+      $email2 = $("#id_email2");
+      $email2Wrapper = $("#email2_wrapper");
+      if ($email2Wrapper.length === 0) { $email2.attr('required', 'required'); }
+    
+      $("#id_email").on('change', function() {
+        $email2Wrapper.removeClass('d-none');
+        $email2.attr('required', 'required');
+        $email2.focus();
+        $(this).off('change');
+      });
+    });
+  </script>
+  <script src="{% static 'imageutils/js/cropper.min.js' %}"></script>
+  <script src="{% static 'imageutils/js/jquery-cropper.min.js' %}"></script>
+  <script src="{% static 'imageutils/js/imageutils.js' %}"></script>
+{% endblock %}

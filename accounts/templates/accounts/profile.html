@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+  Profile
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-3">
+      <div class="aspect-ratio-box mt-3 mb-3">
+        <div class="aspect-ratio-box-inside">
+          <img src="{{ user.avatar.url }}" alt="{{ user.get_full_name }}'s avatar" class="g-img img-thumbnail">
+        </div>
+      </div>
+      <h2>{{ user.get_full_name }}</h2>
+      <p class="text-muted small">{{ user.email }}</p>
+      <h6>Birthday</h6>
+      <p>{{ user.dob }}</p>
+      <h6>Favorite animal</h6>
+      <p>{{ user.favorite_animal }}</p>
+      <h6>Hobbies</h6>
+      <p>{{ user.hobbies }}</p>
+    </div>
+    <div class="col-7 offset-1">
+      <p>{{ user.bio|safe }}        {% lorem 3 p %}
+
+</p>
+    </div>
+  </div>
+{% endblock %}

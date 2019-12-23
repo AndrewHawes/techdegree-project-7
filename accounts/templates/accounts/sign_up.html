@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Register
+{% endblock %}
+{% block content %}
+  <form method="post" action="{% url 'sign_up' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+
+  </form>
+{% endblock %}
+{% block javascript %}
+  {{ block.super }}
+  <script>
+    if ($("#id_bio").hasClass('is-invalid')) { $("#id_bio").parent().addClass('is-invalid'); }
+    if ($("#id_dob").hasClass('is-invalid')) { $("#id_dob").parent().addClass('is-invalid'); }
+  </script>
+{% endblock %}

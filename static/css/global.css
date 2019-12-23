@@ -1,0 +1,60 @@
+#user-avatar {
+  /*overflow: hidden;*/
+}
+.asteriskField {
+  display: none;
+}
+.g-img-container {
+  width: 100%;
+  position: relative;
+  border: 1px;
+}
+.g-btn-center-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.g-img {
+  width: 100%;
+  height: auto;
+}
+.g-img-edit-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  /*transform: translate(-50%, 50%);*/
+}
+/*.g-img-upload-btn {*/
+/*  position: absolute;*/
+/*  top: 1rem;*/
+/*  right: 50%;*/
+/*  transform: translate(50%, 0);*/
+/*}*/
+.aspect-ratio-box {
+  height: 0;
+  overflow: hidden;
+  padding-top: 100%;
+  position: relative;
+  width: 100%;
+}
+.aspect-ratio-box-inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+.flexbox-centering {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.viewport-sizing {
+  font-size: 5vw;
+}
+.django-ckeditor-widget {
+  width: 100%;
+}
