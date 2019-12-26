@@ -1,10 +1,3 @@
-## Note to Treehouse reviewer:
-I submitted this several months ago but had to suspend my account before it was graded.
-I have since had time to polish it, so I'd like to request to have it graded for the
-Exceeds Expectations requirements and rejected if it doesn't meet them.
-
-Thanks!
-
 # Profile Project
 This is the project 7 for the Python Web Development Techdegree program.
 It's a simple site that allows users to create and edit a profile.
